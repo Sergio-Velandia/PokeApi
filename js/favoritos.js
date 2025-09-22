@@ -1,0 +1,3 @@
+function favoritos (){
+    alert("favoritos")
+}
