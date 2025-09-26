@@ -1,3 +1,3 @@
 function original (){
-    alert("original")
+    document.getElementById = ("root").innerHTML = "original"
 }

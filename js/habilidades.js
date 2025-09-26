@@ -1,3 +1,4 @@
 function habilidades (){
-    alert("habilidades")
+    document.getElementById = ("root").innerHTML = "habilidades"
+
 }

@@ -1,7 +1,73 @@
-body{
-    background-color: gray;
-    
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-color: #1a1a1a; /* Fondo oscuro */
+    color: #f0f0f0; /* Texto claro */
+    margin: 0;
+    padding: 20px;
 }
-h1{
-    color: red;
+
+h1 {
+    color: #ffcc00; /* Tono dorado/amarillo Yu-Gi-Oh! */
+    margin-bottom: 30px;
+}
+
+.card-container {
+    /* Flexbox para ordenar las cartas en una cuadrícula responsiva */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Espacio entre las cartas */
+    max-width: 1200px; /* Limita el ancho del contenedor */
+    margin: 0 auto; /* Centra el contenedor en la página */
+}
+
+.un-yugioh-card {
+    /* Dimensiones fijas para que todas las cartas se vean uniformes */
+    width: 160px; 
+    height: 280px; 
+    
+    /* Diseño */
+    background: #333; /* Fondo más oscuro para la tarjeta */
+    border: 2px solid #ffcc00; /* Borde de color de Yu-Gi-Oh! */
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra suave */
+    
+    /* Flexbox para organizar el contenido interno */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    
+    /* Interacción */
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Efecto al pasar el ratón */
+.un-yugioh-card:hover {
+    transform: scale(1.05); /* Ligeramente más grande */
+    box-shadow: 0 8px 16px rgba(255, 204, 0, 0.4); /* Sombra con color */
+    border-color: #fff; /* Borde más claro para resaltar */
+}
+
+.card-info {
+    font-weight: bold;
+    font-size: 0.85em;
+    color: #fff;
+    margin-bottom: 8px;
+    /* Aseguramos que el nombre largo no desborde la tarjeta */
+    height: 3em; 
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+.card-image {
+    /* La imagen es el foco principal */
+    width: 100%;
+    max-height: 200px;
+    object-fit: contain; /* Asegura que la imagen se ajuste sin distorsionarse */
+    border-radius: 5px;
+    border: 1px solid #555; /* Borde sutil para la imagen */
 }

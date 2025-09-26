@@ -1,3 +1,4 @@
 function favoritos (){
-    alert("favoritos")
+    document.getElementById = ("root").innerHTML = "favoritos"
+
 }
