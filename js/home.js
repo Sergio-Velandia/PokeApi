@@ -1,34 +1,58 @@
-function home(cardsArray){
+function GeneralLista(cardsArray){
     const rootElement = document.getElementById("root");
-    rootElement.innerHTML = ''; // Limpia el contenido anterior
+    
+    // Renderiza la lista completa directamente en el root
+    const listaHTML = generarListaHTML(cardsArray);
+    
+    rootElement.innerHTML = listaHTML; 
+}
 
-    // Itera sobre las primeras 9 cartas
-    for(var i = 0; i < 30; i++){
-        // Verificamos que la carta exista antes de intentar acceder a sus propiedades
-        if (cardsArray[i]) {
-            const card = cardsArray[i];
-            
-            // La API de Yu-Gi-Oh! tiene la información relevante:
-            const cardName = card.name;
-            const cardId = card.id; // Usamos el ID de la carta para el Detalle() si lo necesitas
-            
-            // La URL de la imagen de arte oficial está en card_images[0].image_url
-            // Usamos el 'image_url' en lugar del arte de tamaño completo ('image_url_cropped')
-            const cardImageUrl = card.card_images[0].image_url;
+function Home(filtro){
+    var root = document.getElementById("root");
+    root.innerHTML = ''; 
+    
+    // buscador
+    const buscador = document.createElement("input");
+    buscador.classList.add("c-buscador");
+    buscador.type = "text";
+    buscador.placeholder = "Buscar Carta Yu-Gi-Oh!..."; 
+    buscador.addEventListener("input", () => {
+        buscadorfuncion(buscador.value); 
+    });
 
-            rootElement.innerHTML += `
-                <div class="un-yugioh-card" onclick="Detalle(${cardId})">
-                    <p class="card-info">#${cardId} ${cardName}</p>
-                    <img 
-                        src="${cardImageUrl}" 
-                        width="auto" 
-                        height="auto" 
-                        loading="lazy" 
-                        alt="${cardName}"
-                        class="card-image"
-                    >
-                </div>
-            `;
-        }
+    // contenedor filtro
+    const tipos = [
+        "Normal Monster", "Effect Monster", "Fusion Monster", "Synchro Monster", 
+        "Xyz Monster", "Link Monster", "Ritual Monster", "Pendulum Monster", 
+        "Spell", "Trap",
+        "DARK", "DIVINE", "EARTH", "FIRE", "LIGHT", "WATER", "WIND"
+    ];
+
+    const contenedorFiltro = document.createElement("div");
+    contenedorFiltro.classList.add("tipos-container"); 
+
+    for (let i = 0; i < tipos.length; i++) {
+        const tipo = tipos[i];
+        const btn = document.createElement("button");
+        btn.textContent = tipo;
+        
+        btn.addEventListener("click", () => {
+            FiltroConexion(tipo); 
+        });
+
+        contenedorFiltro.appendChild(btn);
     }
+
+    // add contenedor lista
+    // Aquí se genera el HTML de la lista inicial usando los datos cargados en conexion.js
+    const listaHTML = generarListaHTML(yugiohCards); 
+    var contenedorLista = document.createElement("div");
+    contenedorLista.classList.add("c-contenedor-lista"); 
+    contenedorLista.id = "la-lista"; 
+    contenedorLista.innerHTML = listaHTML; 
+
+    // agregar contenedores
+    root.appendChild(buscador);
+    root.appendChild(contenedorFiltro);
+    root.appendChild(contenedorLista);
 }
